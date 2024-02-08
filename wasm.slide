@@ -1,0 +1,37 @@
+Empowering Go with WebAssembly System Interface (WASI) Unleashed
+
+Wasm I/O 2024
+Barcelona, Spain
+14th March 2024
+
+Rajiv Ranjan Singh
+Achille Roussel
+
+*
+
+.image 2.svg 200 _
+
+* Agenda
+
+- Introduction to WebAssembly System Interface (WASI)
+- Overview of Go's Existing WebAssembly Support
+- Overview of WASI Support in the Go Toolchain
+- Live demo on Networking in WASI
+
+* What is WebAssembly?
+
+[[https://webassembly.org/][WebAssembly (Wasm)]] is a binary instruction format originally designed for the web. It represents a standard that allows developers to run high-performance, low-level code directly in web browsers at near-native speeds.
+
+Go first added support for compiling to Wasm in the 1.11 release through the `js/wasm` port. This enabled Go code compiled using the Go compiler to be executed in web browsers, albeit requiring a JavaScript execution environment.
+
+As the use of Wasm has grown, so have the use cases outside of the browser. Many cloud providers are now offering services that enable users to execute Wasm executables directly, leveraging the new [[https://wasi.dev/][WebAssembly System Interface (WASI)]] syscall API.
+
+* The WebAssembly System Interface
+
+WASI defines a system for WebAssembly (Wasm) programs to communicate with computer resources like the filesystem, system clock, and random data utilities. The most recent WASI specification is known as `wasi_snapshot_preview`1, leading to the GOOS name `wasip1`. Future versions of the API are in development, and incorporating them into the Go compiler might mean introducing a new GOOS.
+
+The establishment of WASI has enabled various Wasm runtimes (hosts) to standardize their communication with the system through this API. Examples of Wasm/WASI hosts encompass [[https://wasmtime.dev/][Wasmtime]], [[https://wazero.io/][Wazero]], [[https://wasmedge.org/][WasmEdge]], [[https://wasmer.io/][Wasmer]], [[https://nodejs.org/][NodeJS]]. Additionally, several cloud providers offer hosting for Wasm/WASI executables.
+
+* Introduction to WebAssembly System Interface (WASI)
+
+* Overview of WASI Support in the Go Toolchain
