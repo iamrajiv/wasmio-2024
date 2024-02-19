@@ -11,20 +11,70 @@ Achille Roussel
 
 .image 2.svg 200 _
 
+: Agenda
+
+: Speaker Introductions (Achille)
+: - Rajiv
+: - Achille
+
+: Story of how this talk happened (Rajiv)
+: - open-source story
+: - we didn't know each other, never met in person
+: - connected by Go and WASM community
+: - low interest for this talk last year but a lot of demand this year (thank WASMIO for the opportunity)
+: - this talk is about the open-source community comming together to present on what we've created
+
+: What is the Go programming language? (Achille)
+: - systems programming
+: - great ecosystem to develop network services
+: - compiled language, memory-safe, automatic memory management (garbage collected)
+: - famous for concurrency features (e.g., channels & goroutines)
+: - open-source project maintained by Google but contributed by hundreds developers from the community
+: - explain TinyGo & Big Go, this talk mostly focuses on Big Go
+
+: Using WebAssembly in Go (Rajiv)
+: - GOOS=wasip1 GOARCH=wasm go build
+: - Show how to run tests with runtime set go GOWASIRUNTIME=wazero
+: - Wrapping Wasm functions in Go with go:wasmimport
+
+: The WebAssembly System Interface (Achille)
+: - Introduction to WebAssembly System Interface (WASI)
+
+: History of WASI Support in the Go Toolchain (Rajiv)
+: - Talk about TinyGo?
+: - talk about how the project started, who was involved
+: - talk about when it was released
+: - link to Go blog post about wasip1
+
+: Examples of using wasip1 in real-world programs (open-source) (Achille)
+: - https://github.com/sqlc-dev/sqlc-gen-python
+: - (need more)
+
+: Why is WASI useful for sqlc-gen-python (Rajiv)
+: - dig into use case
+: - show how it's useful
+
+: Limitations of wasip1 (Achille)
+: - network support needs third party extensions (open-source)
+:   https://github.com/stealthrocket/net (mention Stealth Rocket again)
+
+: When to use TinyGo vs Big Go in WASI? (Rajiv)
+: - TinyGo good for small binary footprint (e.g., browser)
+: - Big Go good for full language features (e.g., goroutines)
+
+: The future of Wasm in Go (Achille)
+: - docker & kubernetes supporting WASI modules?
+: - wasip2 development
+:   - go:wasmexport
+:   - GOARCH=wasm32
+:   - Fastly development of wasip2 on TinyGo
+
 * Agenda
 
 - Introduction to WebAssembly System Interface (WASI)
 - Overview of Go's Existing WebAssembly Support
 - Overview of WASI Support in the Go Toolchain
 - Live demo on Networking in WASI
-
-* What is WebAssembly?
-
-[[https://webassembly.org/][WebAssembly (Wasm)]] is a binary instruction format originally designed for the web. It represents a standard that allows developers to run high-performance, low-level code directly in web browsers at near-native speeds.
-
-Go first added support for compiling to Wasm in the 1.11 release through the `js/wasm` port. This enabled Go code compiled using the Go compiler to be executed in web browsers, albeit requiring a JavaScript execution environment.
-
-As the use of Wasm has grown, so have the use cases outside of the browser. Many cloud providers are now offering services that enable users to execute Wasm executables directly, leveraging the new [[https://wasi.dev/][WebAssembly System Interface (WASI)]] syscall API.
 
 * The WebAssembly System Interface
 
