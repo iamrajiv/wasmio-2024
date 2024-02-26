@@ -1,20 +1,13 @@
-Empowering Go with WebAssembly System Interface (WASI) Unleashed
-
-Wasm I/O 2024
-Barcelona, Spain
+# Empowering Go with WebAssembly System Interface (WASI) Unleashed
 14th March 2024
+Tags: wasm, wasip1
+Summary: This presentation looks at the current state of WebAssembly in Go, with a focus on WASI preview 1. It covers the history of WASI development, ecosystem of tools, and explores real-world applications.
 
 Rajiv Ranjan Singh
+
 Achille Roussel
 
-*
-
-: Achille
-: Speaker Introduction
-: - Rajiv
-: - Achille
-
-* Agenda
+## Agenda
 
 : Rajiv
 - The story of how this talk happened
@@ -78,3 +71,67 @@ Achille Roussel
 : - go:wasmexport
 : - GOARCH=wasm32
 : - Fastly development of wasip2 on TinyGo
+
+## Speakers
+
+.link https://github.com/iamrajiv
+
+-
+
+.link https://github.com/achille-roussel
+
+- Career at **Twitch, Facebook, Segment, Twilio**
+- Go developer since 2014
+- Go contributor since 2023 (**GOOS=wasip1**)
+- Open-source projects: **wazero, wasi-go, ..."
+- Co-Founder of [**Stealth Rocket**](https://stealthrocket.tech)
+
+: (Rajiv intro)
+
+: My name is Achille, I'm originally from France but I live in San Francisco now.
+: I've been a Go developers for almost 10 years and I started contributing to the Go project in 2023.
+: Last year I joined the team that developed and maintains the WebAssembly architecture of Go.
+: Personally, I contributed the WASI preview 1 implementation, which is what we are here to talk to you about.
+: Finally, I'm also the co-founder of Stealth Rocket, where we are working on a programming model and platform for durable execution called Dispatch.
+
+## An open-source story
+
+## What is the Go programming language?
+
+: Go is a multi-paradigm programming language that is oriented to the needs of programming secure, production quality applications.
+: It is a language that is developed and maintained by Google as an open-source project.
+: Most contributions today come from the open-source community.
+: Every change to the language or standard library follows the same review and acceptance process, regardless of who submitted it.
+
+: Go is very popular to develop Cloud Services, or networking applications in general.
+: It is a compiled, memory-safe language with automated memory management, and a focus on simplicity.
+: Go is often described as being easy to pick up, someone with prior experience of software development can usually become a productive Go developer within a week or two.
+: If you've heard of Go before, you probably learned about the concurrency primitives that exist in the language like goroutines and channels.
+: Combined with a powerful runtime and standard library, this makes Go a very effective tool to develop reliable distributed systems.
+
+: In this presentation we also tried to give you a glimpse into the world of Go.
+: In particular, you will see those depictions of little gophers hard at work in the slides.
+: The gopher is the mascot for Go, and also the way we refer to Go developers.
+: If you've ever attended a presentation on the Go programming language, you may recognize the program that we used to create this presentation.
+: It is called present, and is part of the extended Go tool kit, and obviously was written in Go.
+: What I'm trying to coney here is that Go is more than a language, it's an ecosystem of tools based on a programming language, but aiming to make developers more productive.
+
+: In this ecosystem, when we refer to Go, we are usually talking about the core project maintained by Google.
+: However, there are alternative compilers as well, notoriously TinyGo.
+: TinyGo is the Go compiler for small places, and is an important project for the WebAssembly community, as we will talk about in more details later.
+
+## Using WebAssembly in Go
+
+## The WebAssembly System Interface
+
+## History of WASI Support in the Go Toolchain
+
+## Examples of using wasip1 in real-world programs
+
+## Why is WASI useful for sqlc-gen-python and sqlc-gen-kotlin?
+
+## Limitations of GOOS=wasip1
+
+## When to use TinyGo vs Big Go in WASI?
+
+## The future of Wasm in Go
