@@ -1,10 +1,11 @@
 # Empowering Go with WebAssembly System Interface (WASI) Unleashed
+
 14th March 2024
-Tags: wasm, wasip1
-Summary: This presentation looks at the current state of WebAssembly in Go, with a focus on WASI preview 1. It covers the history of WASI development, ecosystem of tools, and explores real-world applications.
+
+Tags: wasm, wasi, wasip1
+Summary: This presentation examines the current state of WebAssembly in Go, with a focus on WASI preview 1. It delves into the history of WASI development, the ecosystem of tools, and explores real-world applications.
 
 Rajiv Ranjan Singh
-
 Achille Roussel
 
 ## Agenda
@@ -47,7 +48,7 @@ Achille Roussel
 - Examples of using wasip1 in real-world programs
 : - https://github.com/sqlc-dev/sqlc-gen-python
 : - https://github.com/sqlc-dev/sqlc-gen-kotlin
-: - need more examples
+: - Need more examples
 
 : Achille
 - Why is WASI useful for sqlc-gen-python and sqlc-gen-kotlin?
@@ -76,47 +77,56 @@ Achille Roussel
 
 .link https://github.com/iamrajiv
 
--
+- Software Engineer at **A.P. Moller - Maersk**
+- Graduated in 2022 from **JSS Academy of Technical Education, Bengaluru, India**
+- GSoD 2020 **@gRPC-Gateway**, GSoD 2021 **@Wechaty**, LFX Mentorship 2021 **@Moja Global**, and GSoC 2022 **@Keptn**
+- Previously worked with **Lummo, redBus, and Economize**
+
+: My name is Rajiv. I'm originally from Bihar, India, and currently work as a Software Engineer at A.P. Moller - Maersk in the Platform Engineering team in Bengaluru, India.
+: I graduated in 2022 from JSS Academy of Technical Education, Bengaluru, India, with a degree in Information Science and Engineering.
+: I started working with Go in 2020 when I was selected for Google Season of Docs (GSoD) with gRPC-Gateway.
+: I am an open-source enthusiast and have contributed to various open-source projects and programs such as GSoD, LFX Mentorship, and GSoC.
+: I have previously worked with Lummo, redBus, and Economize.
 
 .link https://github.com/achille-roussel
 
 - Career at **Twitch, Facebook, Segment, Twilio**
 - Go developer since 2014
 - Go contributor since 2023 (**GOOS=wasip1**)
-- Open-source projects: **wazero, wasi-go, ..."
+- Open-source projects such as **wazero, wasi-go, etc**
 - Co-Founder of [**Stealth Rocket**](https://stealthrocket.tech)
 
-: My name is Achille, I'm originally from France but I live in San Francisco now.
-: I've been a Go developers for almost 10 years and I started contributing to the Go project in 2023.
-: Last year I joined the team that developed and maintains the WebAssembly architecture of Go.
-: Personally, I contributed the WASI preview 1 implementation, which is what we are here to talk to you about.
+: My name is Achille. I'm originally from France, but I now live in San Francisco.
+: I've been a Go developer for almost 10 years, and I started contributing to the Go project in 2023.
+: Last year, I joined the team that develops and maintains the WebAssembly architecture of Go.
+: Personally, I contributed to the implementation of WASI preview 1, which is what we are here to discuss with you.
 : Finally, I'm also the co-founder of Stealth Rocket, where we are working on a programming model and platform for durable execution called Dispatch.
 
-## An open-source story
+## The story of how this talk happened
 
 ## What is the Go programming language?
 
-: Go is a multi-paradigm programming language that is oriented to the needs of programming secure, production quality applications.
-: It is a language that is developed and maintained by Google as an open-source project.
+: Go is a multi-paradigm programming language oriented towards the needs of developing secure, production-quality applications.
+: It is a language developed and maintained by Google as an open-source project.
 : Most contributions today come from the open-source community.
-: Every change to the language or standard library follows the same review and acceptance process, regardless of who submitted it.
+: Every change to the language or standard library follows the same review and acceptance process, regardless of the submitter.
 
-: Go is very popular to develop Cloud Services, or networking applications in general.
-: It is a compiled, memory-safe language with automated memory management, and a focus on simplicity.
-: Go is often described as being easy to pick up, someone with prior experience of software development can usually become a productive Go developer within a week or two.
-: If you've heard of Go before, you probably learned about the concurrency primitives that exist in the language like goroutines and channels.
-: Combined with a powerful runtime and standard library, this makes Go a very effective tool to develop reliable distributed systems.
+: Go is very popular for developing cloud services or networking applications in general.
+: It is a compiled, memory-safe language with automated memory management and a focus on simplicity.
+: Go is often described as easy to pick up; someone with prior experience in software development can usually become a productive Go developer within a week or two.
+: If you've heard of Go before, you probably learned about the concurrency primitives that exist in the language, like goroutines and channels.
+: Combined with a powerful runtime and standard library, this makes Go a very effective tool for developing reliable distributed systems.
 
-: In this presentation we also tried to give you a glimpse into the world of Go.
-: In particular, you will see those depictions of little gophers hard at work in the slides.
-: The gopher is the mascot for Go, and also the way we refer to Go developers.
-: If you've ever attended a presentation on the Go programming language, you may recognize the program that we used to create this presentation.
-: It is called present, and is part of the extended Go tool kit, and obviously was written in Go.
-: What I'm trying to coney here is that Go is more than a language, it's an ecosystem of tools based on a programming language, but aiming to make developers more productive.
+: In this presentation, we also aimed to give you a glimpse into the world of Go.
+: In particular, you will see depictions of little gophers hard at work in the slides.
+: The gopher is the mascot for Go and also the term we use to refer to Go developers.
+: If you've ever attended a presentation on the Go programming language, you may recognize the program we used to create this presentation.
+: It is called "present" and is part of the extended Go toolkit, obviously written in Go.
+: What I'm trying to convey here is that Go is more than just a language; it's an ecosystem of tools based on a programming language aimed at making developers more productive.
 
-: In this ecosystem, when we refer to Go, we are usually talking about the core project maintained by Google.
-: However, there are alternative compilers as well, notoriously TinyGo.
-: TinyGo is the Go compiler for small places, and is an important project for the WebAssembly community, as we will talk about in more details later.
+: In this ecosystem, when we refer to Go, we usually mean the core project maintained by Google.
+: However, there are alternative compilers, most notably TinyGo.
+: TinyGo is the Go compiler designed for resource-constrained environments and is an important project for the WebAssembly community, as we will discuss in more detail later.
 
 ## Using WebAssembly in Go
 
@@ -126,10 +136,31 @@ Achille Roussel
 
 ## Examples of using wasip1 in real-world programs
 
+- How can we utilize it with Go?
+: Ensure that you have installed at least version 1.21 of Go. For this demo, we'll use the wazero host to execute our binary.
+
+.code main.go
+
+$ GOOS=wasip1 GOARCH=wasm go build -o main.wasm main.go
+
+$ wazero compile main.wasm
+
+$ wazero run main.wasm
+
+Hello wasip1!
+
 ## Why is WASI useful for sqlc-gen-python and sqlc-gen-kotlin?
 
-## Limitations of GOOS=wasip1
+: WASI is currently primarily useful for writing plugins in any language that can be compiled to Wasm and WASI, and then executed in any language with a Wasm/WASI virtual machine.
+: Go can be compiled both as a plugin and as a plugin runner (using Wazero, for example). In the case of sqlc, they can run plugins compiled to WASI, and then they can write their own plugins in Go and compile them to WASI.
+
+## Limitations of wasip1
 
 ## When to use TinyGo vs Big Go in WASI?
+
+: The primary reasons for people to use TinyGo for WebAssembly (Wasm) and WebAssembly System Interface (WASI) include its smaller binary size.
+: The reason it compiles smaller binaries is a bit complicated, but essentially boils down to two factors: it doesn't implement all Go functionality, and it's built on top of LLVM instead of its own build system.
+: Another reason users may want to use TinyGo is that it generally implements features ahead of Big Go. For example, TinyGo had support for WASI before Big Go.
+: It also will likely have support for WASI preview 2 before. It does support most things (it definitely supports goroutines) but it can sometimes break in unexpected ways. Go is generally a safer bet for production workloads, but if you are willing to accept a bit of risk, there are benefits.
 
 ## The future of Wasm in Go
