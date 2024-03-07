@@ -43,24 +43,23 @@ Achille Roussel
 : - Talk about TinyGo
 : - Talk about how the project started, who was involved
 : - Talk about when it was released
-: - Link to the Go blog post about wasip1
 
 : Rajiv
 - Examples of using wasip1 in real-world programs
 : - Show how to use wasip1 with Go
 : - Why is WASI useful for sqlc and its plugins?
 
-: Rajiv
+: Achille
 - Limitations of wasip1
 : - Network support requires third-party extensions
 : - Mention Stealth Rocket again the first time we mention it at the start of the talk, now the second time.
 
-: Achille
+: Rajiv
 - When to use TinyGo vs Big Go in WASI?
 : - TinyGo is good for a small binary footprint (for example, for browsers)
 : - Big Go is good for full language features (for example, for goroutines)
 
-: Rajiv
+: Achille
 - The future of Wasm in Go
 : - Will Docker and Kubernetes support WASI modules?
 : - wasip2 development
