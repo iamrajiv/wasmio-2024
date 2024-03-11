@@ -98,7 +98,7 @@ Achille Roussel
 
 ## The story of how this talk happened
 
-.image 1.png 400 _
+.image images/1.png 400 _
 
 - Thanks to the open-source community, this talk on Go and WebAssembly became possible.
 
@@ -109,7 +109,7 @@ Achille Roussel
 
 ## What is the Go programming language?
 
-.image 2.png 400 _
+.image images/2.png 400 _
 
 - Go is a multi-paradigm programming language oriented towards the needs of developing secure, production-quality applications.
 
@@ -137,7 +137,7 @@ Achille Roussel
 
 ## Using WebAssembly in Go
 
-.image 3.png 400 _
+.image images/3.png 400 _
 
 - Go added support for WebAssembly (Wasm) in 2018, enabling developers to run high-performance, low-level code in web browsers and other environments using the WebAssembly System Interface (WASI) syscall API.
 
@@ -150,7 +150,7 @@ Achille Roussel
 
 ## The WebAssembly System Interface
 
-.image 4.png 400 _
+.image images/4.png 400 _
 
 - WASI defines rules for Wasm programs to interact with computer resources like the file system, clock, and random data.
 
@@ -164,7 +164,7 @@ Achille Roussel
 
 ## History of WASI Support in the Go Toolchain
 
-.image 5.png 400 _
+.image images/5.png 400 _
 
 - The wasip1 port of Go was a community effort, with contributors from various backgrounds and locations.
 
@@ -202,13 +202,11 @@ Achille Roussel
 - How can we utilize wasip1 in Go?
 : Ensure that you have installed at least version 1.21 of Go. For this demo, we'll use the wazero host to execute our binary.
 
-.code main.go
+.code examples/main.go
 
-$ GOOS=wasip1 GOARCH=wasm go build -o main.wasm main.go
-
-$ wazero run main.wasm
-
-Hello wasip1!
+      $ GOOS=wasip1 GOARCH=wasm go build -o main.wasm main.go
+      $ wazero run main.wasm
+      Hello wasip1!
 
 : In addition to the new wasm port, Go 1.21 introduces a new compiler directive: go:wasmimport.
 : It instructs the compiler to translate calls to the annotated function into a call to the function specified by the host module name and function name.
@@ -225,7 +223,7 @@ Hello wasip1!
 
 ## Limitations of wasip1
 
-.image 6.png 400 _
+.image images/6.png 400 _
 
 - Wasm is single-threaded, causing all goroutines to block during host function calls. It also lacks a complete implementation of network sockets, requiring third-party extensions.
 
@@ -240,7 +238,7 @@ Hello wasip1!
 
 ## When to use TinyGo vs Big Go in WASI?
 
-.image 7.png 400 _
+.image images/7.png 400 _
 
 - TinyGo is preferred for Wasm and WASI due to its smaller binary size and early feature implementation. However, it may have unexpected issues, making it riskier for production workloads compared to Go.
 
@@ -252,7 +250,7 @@ Hello wasip1!
 
 ## The future of Wasm in Go
 
-.image 8.png 400 _
+.image images/8.png 400 _
 
 - The Go team is developing wasip2, a new version of the WASI port, with network socket support and go:wasmexport directive. It will also introduce GOARCH=wasm32 for 32-bit architectures.
 
