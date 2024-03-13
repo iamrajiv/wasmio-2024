@@ -77,8 +77,6 @@ Achille Roussel
 - Memory-safe with automated memory management
 - Portable, compiles to a multitude of platforms
 
-: TOOD: add image of OSX, linux, and wasi
-
 : Instead of telling you a long story, let me show you an example.
 : This is a full Go program to print a hello message, as you can see it is quite simple.
 : Even if you've never looked at a Go program before, you'll be able to make sense of the code, Go is easy to pick up!
