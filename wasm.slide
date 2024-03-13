@@ -134,7 +134,7 @@ $ go tool pprof
 : It's because a big part of Go is developed by its community, and for a while, there weren't enough contributors available to finish it.
 : That changed in January 2023, when a Go contributors, Johan Brandhorst, posted a message on Slack asking if anyone was interested in contributing to WASI work, which had stalled for a few years.
 
-.image images/go-plus-wasi.png 400 _
+.image images/johan.png 400 _
 
 ## Task #1: Learn the Craft
 
