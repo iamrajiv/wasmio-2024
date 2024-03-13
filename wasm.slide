@@ -220,9 +220,13 @@ Simple two step process:
 : In this program, the go:wasmimport directive is used underneath by the Go runtime to interact with the host.
 : And when we run our program with a runtime like wazero, we see our message print to the console.
 
-## Advanced use of wasip1 in Go
+## Making Go plugins with wasip1
 
 - Why is WASI useful for sqlc and its plugins?
+  - Generate type-safe code from SQL queries
+  - Generic code generator written in Go
+  - Plugins targetting each language built with GOOS=wasip1
+
 : WASI is currently primarily useful for writing plugins in any language that can be compiled to Wasm and WASI, and then executed in any language with a Wasm/WASI virtual machine.
 : There is a project called https://github.com/sqlc-dev/sqlc which generates type-safe code from SQL. In this project, we need a differential plugin to make things happen, like sqlc-gen-go, sqlc-gen-kotlin, sqlc-gen-python, etc.
 : So for every release, they extract the Go, Python, Kotlin, etc., codegen into standalone respective particular language plugins sqlc-gen-go, sqlc-gen-kotlin, sqlc-gen-python, etc., which are then built using wasip1.

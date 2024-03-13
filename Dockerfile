@@ -8,5 +8,5 @@ COPY images/* /root/present/images/
 COPY examples/* /root/present/examples/
 COPY *.slide /root/present/
 WORKDIR /root/present
-ENTRYPOINT ["/usr/local/bin/present"]
+ENTRYPOINT ["/usr/local/bin/present", "-http=:3999"]
 CMD ["-notes"]
