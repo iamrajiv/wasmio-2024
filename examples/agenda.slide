@@ -1,0 +1,57 @@
+
+: Achille
+- The story of how this talk happened
+: - An open-source tale
+: - We didn't know each other; we had never met in person
+: - We connected through the Go and Wasm community
+: - There was low interest in this talk last year, but there is a lot of demand for it this year (thanks to Wasm I/O for the opportunity)
+: - This talk is about the open-source community coming together to present what we've created
+
+: Rajiv
+- What is the Go programming language?
+: - Systems programming
+: - Great ecosystem for developing network services
+: - Compiled language, memory-safe, with automatic memory management (garbage collected)
+: - Famous for concurrency features (e.g., channels & goroutines)
+: - Open-source project maintained by Google but contributed to by hundreds of developers from the community
+: - Explanation of TinyGo and Big Go because this talk mostly focuses on Big Go
+
+: Achille
+- Using WebAssembly in Go
+: - GOOS=wasip1 GOARCH=wasm go build
+: - Show how to run tests with runtime set as GOWASIRUNTIME=wazero
+: - Wrapping Wasm functions in Go with go:wasmimport
+
+: Rajiv
+- The WebAssembly System Interface
+: - Introduction to WebAssembly System Interface (WASI)
+: - Advantages of using WASI
+
+: Achille
+- History of WASI Support in the Go Toolchain
+: - Talk about TinyGo
+: - Talk about how the project started, who was involved
+: - Talk about when it was released
+
+: Rajiv
+- Examples of using wasip1 in real-world programs
+: - Show how to use wasip1 with Go
+: - Why is WASI useful for sqlc and its plugins?
+
+: Achille
+- Limitations of wasip1
+: - Network support requires third-party extensions
+: - Mention Stealth Rocket again the first time we mention it at the start of the talk, now the second time.
+
+: Rajiv
+- When to use TinyGo vs Big Go in WASI?
+: - TinyGo is good for a small binary footprint (for example, for browsers)
+: - Big Go is good for full language features (for example, for goroutines)
+
+: Achille
+- The future of Wasm in Go
+: - Will Docker and Kubernetes support WASI modules?
+: - wasip2 development
+: - go:wasmexport
+: - GOARCH=wasm32
+: - Fastly development of wasip2 on TinyGo
