@@ -13,6 +13,8 @@ Achille Roussel
 - **How to use wasip1?**
 - **The future of WASI in Go**
 
+.image images/DRAWING_GOPHER.png 300 _
+
 ## Speaker - Rajiv Ranjan Singh
 
 .link https://github.com/iamrajiv
@@ -49,6 +51,8 @@ Achille Roussel
 .image images/achille.png 200 _
 
 ## The story of how this talk happened
+
+.image images/1.gif 500 _
 
 : We come from very different places and never had met in person before.
 : <?> and I have connected online in the Go community and thought it would be nice to come and tell the stories of Go and WebAssembly to a broader audience.
@@ -114,13 +118,11 @@ $ go tool pprof
 - Alternate compilers like **TinyGo**
 - **Wazero** as embedded WASI runtime
 
-: TODO: add logos of popular open-source projects developed in Go: kubernetes, prometheus, tinygo, wazero, etc...
+.image images/GOPHER_SAFARI.png 200 _
 
 : But Go is a lot more than a language, it's an ecosystem of high-quality open-source tools and libraries that largely contribute to developer productivity.
 : Beyond that, it's also a tool with a very wide breadth of applications.
 : In particular, thanks to projects like TinyGo, which is the Go compiler for resource-constrained environments and an important project for the WebAssembly community as well.
-
-.image images/GOPHER_SAFARI.png 200 _
 
 ## History of WASI Support in the Go Toolchain
 
@@ -160,8 +162,6 @@ $ go tool pprof
 : We submitted a first proposal to add a compiler primitive called go:wasmimport, which allows developers to declare imports from the code when compiling to WebAssembly.
 : And a second proposal to add a new compilation target for WASI preview 1.
 : As a side note, that's when we coined the term wasip1, which has now been reused in multiple other projects.
-
-: TODO: image of 4 gophers?
 
 ## Task #2: Power Through
 
@@ -271,17 +271,15 @@ Three main workstreams:
 
 - **GOARCH=wasm32**
   
-  A new WebAssembly 32-bits architecture for Go
+  [A new WebAssembly 32-bits architecture for Go](https://github.com/golang/go/issues/63131)
 
 - **go:wasmexport**
   
-  To allow developers to declare custom exported functions
+  [To allow developers to declare custom exported functions](https://github.com/golang/go/issues/63131)
 
 - **WASI preview 2**
   
-  TinyGo contributors are working on an experimental support for wasip2
-
-: TODO: add links to the proposals
+  [TinyGo contributors are working on an experimental support for wasip2](https://github.com/tinygo-org/tinygo/pull/4027)
 
 .image images/GOPHERCON.png 150 _
 
