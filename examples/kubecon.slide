@@ -1,0 +1,31 @@
+## Using WebAssembly in Go
+
+: TODO: this slide feels like a duplicate of the "Examples of wasip1" below, should we remove it? Maybe we can move the timeline of 2018 => 2023 to the "History of WASI" part.
+
+- Go added support for WebAssembly (Wasm) in 2018, enabling developers to run high-performance, low-level code in web browsers and other environments using the WebAssembly System Interface (WASI) syscall API.
+
+: Go has supported WebAssembly (Wasm) since the 1.11 release, which was in 2018.
+: The initial support allowed Go code to be compiled to Wasm and executed in web browsers.
+: This was a significant milestone for the Go project, as it allowed developers to run high-performance, low-level code directly in web browsers at near-native speeds.
+: However, it required a JavaScript execution environment, which was not always ideal.
+: As the use of Wasm has grown, so have use cases outside of the browser.
+: Many cloud providers are now offering services that allow users to execute Wasm executables directly, leveraging the new WebAssembly System Interface (WASI) syscall API.
+: TOOD: this last sentence seems out of place; at first we say javascript support is not ideal but we're not saying that WASI solves it either.
+
+.image images/3.png 400 _
+
+## The WebAssembly System Interface
+
+: TODO: this slide makes sense for KubeCon but at WASMIO everyone should be familiar with WASI, let's simply move the line to the previous slide
+
+.image images/4.png 400 _
+
+- WASI defines rules for Wasm programs to interact with computer resources like the file system, clock, and random data.
+
+: The WebAssembly System Interface (WASI) is a bunch of rules being worked on by a group called the WASI Subgroup. They're part of the WebAssembly Community Group and they're trying to make these rules into a standard.
+: WASI creates a set of instructions for Wasm programs. These instructions let the programs talk to the computer's resources like the file system, the clock, random data, and other stuff.
+: The latest release of the WASI spec is called wasi_snapshot_preview1, which gives us the GOOS name wasip1.
+: New versions of the API are in the works, and in the future, supporting them in the Go compiler will probably require adding a new GOOS.
+
+: The development of WASI has enabled various Wasm runtimes (hosts) to make their syscall instructions follow the same standards.
+: Some examples of these hosts include Wasmtime, Wazero, WasmEdge, Wasmer, and NodeJS
