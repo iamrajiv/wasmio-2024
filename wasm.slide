@@ -15,6 +15,13 @@ Achille Roussel
 
 .image images/DRAWING_GOPHER.png 300 _
 
+: We're so excited to be here with you to talk about Go and WASI.
+: We use Go every day, but we know that maybe not everyone does, so we'll start with a quick presentation on what Go is.
+: Then we'll jump into a bit of history about how WASI was added to Go.
+: We will cover a few use cases of WASI in Go applications today.
+: And finally, we want to talk a bit about ongoing development in the space, and what are the next steps for Go and WASI to continue their journey together.
+
+
 ## Speaker - Rajiv Ranjan Singh
 
 .link https://github.com/iamrajiv
@@ -26,9 +33,10 @@ Achille Roussel
 
 : My name is Rajiv. I'm originally from Bihar, India, and currently work as a Software Engineer at A.P. Moller - Maersk in the Platform Engineering team in Bengaluru, India.
 : I graduated in 2022 from JSS Academy of Technical Education, Bengaluru, India, with a degree in Information Science and Engineering.
-: I started working with Go in 2020 when I was selected for Google Season of Docs (GSoD) with gRPC-Gateway.
-: I am an open-source enthusiast and have contributed to various open-source projects and programs such as GSoD, LFX Mentorship, and GSoC.
+: I started working with Go in 2020 when I was selected for Google Season of Docs with gRPC-Gateway.
+: I am an open-source enthusiast and have contributed to various open-source projects and programs such as Google Summer of Code.
 : I have previously worked with Lummo, redBus, and Economize.
+: I'm here today with Achille, do you want to tell us a bit about yourself?
 
 .image images/rajiv.png 250 _
 
@@ -45,8 +53,8 @@ Achille Roussel
 : My name is Achille. I'm originally from France, but I now live in San Francisco.
 : I've been a Go developer for almost 10 years, and I started contributing to the Go project in 2023.
 : Last year, I joined the team that develops and maintains the WebAssembly architecture of Go.
-: Personally, I contributed to the implementation of WASI preview 1, which is what we are here to discuss with you.
-: Finally, I'm also the co-founder of dispatch.run, where we are working on a platform to create reliable distributed systems.
+: And I'm also the co-founder of dispatch.run, where we are working on a platform to create reliable distributed systems.
+: So if you're also interested in this space, which has a lot of overlaps with webassembly, come talk to me afterwards.
 
 .image images/achille.png 200 _
 
@@ -55,7 +63,7 @@ Achille Roussel
 .image images/1.gif 500 _
 
 : We come from very different places and never had met in person before.
-: <?> and I have connected online in the Go community and thought it would be nice to come and tell the stories of Go and WebAssembly to a broader audience.
+: Rajiv and I have connected online in the Go community and thought it would be nice to come and tell the stories of Go and WebAssembly to a broader audience.
 : So, open-source is really core to the story we're here to tell.
 : Not only because Go is powered by an open-source community, but also because it's thanks to this community that the WASI port was created, and this talk happened.
 
@@ -66,6 +74,7 @@ Achille Roussel
 
 .image images/GOOGLE.png 300 _
 
+: So let's start with What is Go?
 : Go is a multi-paradigm programming language oriented towards the needs of developing secure, production-quality applications.
 : It is a language developed and maintained by Google as an open-source project.
 
