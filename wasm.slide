@@ -202,7 +202,7 @@ $ go tool pprof
 .image images/GopherSpaceCommunity.png 400 _
 
 : I want to take a minute to thank all the contributors who have participated in creating the wasip1 port of Go.
-: If you're watching this talk, you know who you are, and know the amazing role you took in making this a reality.
+: There are too many people to fit on this slide, but if you're watching this talk, you know who you are, and know the amazing role you took in making this a reality.
 : This is truly a team effort, from people who had mostly never met in person. To me, it is a great showcase of the power of open-source.
 : Now, I'll head it over to Rajiv to tell us more about what we can do with WASI and Go.
 
@@ -241,6 +241,7 @@ Simple two step process:
   - Generic code generator written in Go
   - Plugins targetting each language built with GOOS=wasip1
 
+: There are many applications of wasip1, I selected this one because it highlights the plugin model of WebAssembly.
 : WASI is currently primarily useful for writing plugins in any language that can be compiled to Wasm and WASI, and then executed in any language with a Wasm/WASI virtual machine.
 : There is a project called https://github.com/sqlc-dev/sqlc which generates type-safe code from SQL. In this project, they need a differential plugin to make things happen, like sqlc-gen-go, sqlc-gen-kotlin, sqlc-gen-python, etc.
 : So for every release, they extract the Go, Python, Kotlin, etc., codegen into standalone respective particular language plugins sqlc-gen-go, sqlc-gen-kotlin, sqlc-gen-python, etc., which are then built using wasip1.
@@ -268,7 +269,7 @@ Simple two step process:
 : When compiling to WASI, we use non-blocking file descriptors to integrate with the Go runtime and allow concurrent operations to make progress without blocking one another.
 : However, the WASM architecture used in Go is single-threaded. Although the scheduler can arrange goroutines to run concurrently and file operations are non-blocking, any host function calls will cause all goroutines to block until the call returns.
 : A notable absence in WASI preview 1 is a complete implementation of network sockets.
-: wasip1 only provides functions for operating on already opened sockets, which limits support for key features of the Go standard library like HTTP clients and servers.
+: Which limits support for key features of the Go standard library like HTTP clients and servers.
 : However, platforms such as Wasmer and WasmEdge have introduced networking extensions.
 : Although these extensions are not integrated into the Go compiler, we can use third party libraries to leverage them.
 : This library is also a great example of using the go:wasmimport directive to invoke host functions.
