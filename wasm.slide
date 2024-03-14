@@ -271,8 +271,6 @@ Simple two step process:
 : Although these extensions are not integrated into the Go compiler, third party libraries are available to leverage those extensions.
 : This library is also a great example of using the go:wasmimport directive to invoke host functions.
 
-.image images/GOPHER_ROCKS.png 200 _
-
 ## When to use Go vs TinyGo when targetting WASI?
 
 - **Go**
