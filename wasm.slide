@@ -267,12 +267,14 @@ Simple two step process:
 : Thanks Rajiv :)
 : Go is a language with native concurrency built-in.
 : When compiling to WASI, we use non-blocking file descriptors to integrate with the Go runtime and allow concurrent operations to make progress without blocking one another.
-: However, the WASM architecture used in Go is single-threaded. Although the scheduler can arrange goroutines to run concurrently and file operations are non-blocking, any host function calls will cause all goroutines to block until the call returns.
+: This also integrates with other runtime features like timers.
+: So we get access to very powerful programming tools when using Go with WASI.
+: However, the WASM architecture used in Go is single-threaded. Although the scheduler can arrange goroutines to run concurrently, any host function calls will cause all goroutines to block until the call returns.
 : A notable absence in WASI preview 1 is a complete implementation of network sockets.
 : Which limits support for key features of the Go standard library like HTTP clients and servers.
-: However, platforms such as Wasmer and WasmEdge have introduced networking extensions.
-: Although these extensions are not integrated into the Go compiler, we can use third party libraries to leverage them.
-: This library is also a great example of using the go:wasmimport directive to invoke host functions.
+: However, WebAssembly runtimes such as Wasmer and WasmEdge have introduced networking extensions.
+: Although these extensions are not integrated into Go, we can use third party libraries to leverage them.
+: These libraries are also great examples of using the go:wasmimport directive to invoke host functions.
 
 ## When to use Go vs TinyGo when targetting WASI?
 
