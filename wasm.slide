@@ -137,12 +137,12 @@ $ go tool pprof
 - WASI preview 1 target added in 2023 (Go 1.21)
 
 : Now that we know more about Go, I'm going to take you on a journey through how the WASI preview 1 port was developed.
-: Since a lot of your are software developers familiar with WSSI, I'm sure you'll enjoy the story, in particular because you've probably lived through similar ventures before.
+: Since a lot of you here are software developers familiar with WSSI, I'm sure you'll enjoy the story, in particular because you've probably lived through similar ventures before.
 : WASM support was first added to Go 1.11 that shipped in 2018.
 : But the WASI compilation target was released last year in Go 1.21.
 : This is five years and ten versions appart.
 : And that's because Go is for a big part developed by its community, and for a while, there weren't enough contributors available to work on WASI.
-: That changed in January 2023, when a Go contributor, Johan Brandhorst, posted a message on Slack asking if anyone was interested in forming a team to work on WASI.
+: That changed in January 2023, when Johan Brandhorst, posted a message on Gopher Slack asking if anyone was interested in forming a team to work on WASI.
 
 .image images/johan.png 400 _
 
@@ -193,7 +193,7 @@ $ go tool pprof
 : Through the perseverance of the team, after a couple of months, we had the go:wasmimport directive merged in, which we could use to implement wasip1 support in the Go runtime.
 : As we made progress on the wasip1 implementation, more developers tagged along to contribute improvements.
 : At this stage, we also started getting a lot of support from the Go team, and it really felt like we were going to pull it off!
-: Finally, the new wasip1 target went live in Go 1.21, which was released in September of last year, 2023.
+: Finally, the new wasip1 target went live in Go 1.21, which was released in September 2023.
 
 ## Task #4: Celebrate!
 
@@ -202,6 +202,7 @@ $ go tool pprof
 : I want to take a minute to thank all the contributors who have participated in creating the wasip1 port of Go.
 : If you're watching this talk, you know who you are, and know the amazing role you took in making this a reality.
 : This is truly a team effort, from people who had mostly never met in person. To me, it is a great showcase of the power of open-source.
+: Now, I'll head it over to Rajiv to tell us more about what we can do with WASI and Go.
 
 ## Using the go:wasmimport directive
 
@@ -239,13 +240,12 @@ Simple two step process:
   - Plugins targetting each language built with GOOS=wasip1
 
 : WASI is currently primarily useful for writing plugins in any language that can be compiled to Wasm and WASI, and then executed in any language with a Wasm/WASI virtual machine.
-: There is a project called https://github.com/sqlc-dev/sqlc which generates type-safe code from SQL. In this project, we need a differential plugin to make things happen, like sqlc-gen-go, sqlc-gen-kotlin, sqlc-gen-python, etc.
+: There is a project called https://github.com/sqlc-dev/sqlc which generates type-safe code from SQL. In this project, they need a differential plugin to make things happen, like sqlc-gen-go, sqlc-gen-kotlin, sqlc-gen-python, etc.
 : So for every release, they extract the Go, Python, Kotlin, etc., codegen into standalone respective particular language plugins sqlc-gen-go, sqlc-gen-kotlin, sqlc-gen-python, etc., which are then built using wasip1.
 : This allows people to customize the output by forking just the particular language plugin, not the entire sqlc repository.
 : Go can be compiled both as a plugin and as a plugin runner (using Wazero, for example). In the case of sqlc, they can run plugins compiled to WASI, and then they can write their own plugins in Go and compile them to WASI.
-: The reason for using wasip1 is that it's a much smaller amount of code. Sometimes, people will fork the repo and then they can't merge in later changes because of something totally unrelated to the particular output plugin.
-
-## Qualities of wasip1
+: The reason for using wasip1 is that it's a much smaller amount of code to change to write plugins.
+: Now I'll head it over to Achille to tell us about the qualities and limitations of wasip1.
 
 ## Go wasip1 in a nutshell
 
@@ -258,15 +258,18 @@ Simple two step process:
   - Limited socket support in WASI preview 1
   - No compiler directive to declare exported functions
 
-: Go is a language with native concurrency built-in.
-: When compiling to WASI, we use non-blocking file descriptors to integrate with the Go runtime and allow concurrent operations to move forward.
-: The WASM architecture used in Go is single-threaded. Although the scheduler can arrange goroutines to run concurrently and standard input/output/error operations are non-blocking, any host function calls will cause all goroutines to block until the call returns.
+**Extensions**
+  - [github.com/stealthrocket/net](https://github.com/stealthrocket/net)
 
-: A notable absence in the wasip1 API is a complete implementation of network sockets.
-: wasip1 only provides functions for operating on already opened sockets, which limits support for key features of the Go standard library like HTTP servers.
-: However, platforms such as Wasmer and WasmEdge have introduced extensions to the wasip1 API, enabling the opening of network sockets.
-: Although these extensions are not integrated into the Go compiler, a third-party library, github.com/stealthrocket/net, has emerged.
-: This library utilizes go:wasmimport to enable the use of net.Dial and net.Listen on compatible Wasm hosts, allowing for the creation of net/http servers and other network-related functionalities.
+: Thanks Rajiv :)
+: Go is a language with native concurrency built-in.
+: When compiling to WASI, we use non-blocking file descriptors to integrate with the Go runtime and allow concurrent operations to make progress without blocking one another.
+: However, the WASM architecture used in Go is single-threaded. Although the scheduler can arrange goroutines to run concurrently and file operations are non-blocking, any host function calls will cause all goroutines to block until the call returns.
+: A notable absence in WASI preview 1 is a complete implementation of network sockets.
+: wasip1 only provides functions for operating on already opened sockets, which limits support for key features of the Go standard library like HTTP clients and servers.
+: However, platforms such as Wasmer and WasmEdge have introduced networking extensions.
+: Although these extensions are not integrated into the Go compiler, third party libraries are available to leverage those extensions.
+: This library is also a great example of using the go:wasmimport directive to invoke host functions.
 
 .image images/GOPHER_ROCKS.png 200 _
 
@@ -282,7 +285,8 @@ Simple two step process:
 
 .image images/tinygo-logo.png 150 _
 
-: The primary reasons for people to use TinyGo for is the smaller binary size that it produces.
+: Now we actually have two Go compilers that can target, when should we use one or the other?
+: The primary reason to use TinyGo for is the smaller binary size that it produces. If you're shipping code to a browser for example, this is something that matters a lot.
 : Another reason is that it generally implements features ahead of Big Go. For example, TinyGo had support for WASI before Big Go.
 : As a matter of fact, WASI preview 2 is already being implemented in TinyGo.
 : Now TinyGo makes some trade offs, and won't support 100% of the Go standard library or tool chain.
