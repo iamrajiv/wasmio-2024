@@ -253,12 +253,12 @@ Simple two step process:
   - Full language support
   - Non-blocking I/O
 
-**Limitations**
+- **Limitations**
   - Single threaded, all goroutines block during host function calls
   - Limited socket support in WASI preview 1
   - No compiler directive to declare exported functions
 
-**Extensions**
+- **Extensions**
   - [github.com/stealthrocket/net](https://github.com/stealthrocket/net)
 
 : Thanks Rajiv :)
