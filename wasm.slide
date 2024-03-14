@@ -52,6 +52,7 @@ Achille Roussel
 
 : My name is Achille. I'm originally from France, but came here from San Francisco.
 : I've been a Go developer for almost 10 years, and I started working on the Go compiler and runtime in 2023.
+: I do a lot of open-source work, for example I contribute to Wazero and maintain serveral libraries.
 : Last year, I joined the team that develops and maintains the WebAssembly port of Go.
 : And I'm also the co-founder of dispatch.run, where we are working on a platform to create reliable distributed systems.
 
@@ -130,13 +131,14 @@ $ go tool pprof
 
 : But Go is a lot more than a language, it's an ecosystem of high-quality open-source tools and libraries that largely contribute to developer productivity.
 : Beyond that, it's also a tool with a very wide breadth of applications.
+: I'm mentioning all of this because when using Go, the entire toolchain is available when compiling to WebAssembly.
+: So Achille, how about you tell us how WASI was developed in Go?
 
 ## History of WASI Support in the Go Toolchain
 
 - WebAssembly support added in 2018 (Go 1.11)
 - WASI preview 1 target added in 2023 (Go 1.21)
 
-: Now that we know more about Go, I'm going to take you on a journey through how the WASI preview 1 port was developed.
 : Since a lot of you here are software developers familiar with WSSI, I'm sure you'll enjoy the story, in particular because you've probably lived through similar ventures before.
 : WASM support was first added to Go 1.11 that shipped in 2018.
 : But the WASI compilation target was released last year in Go 1.21.
@@ -268,7 +270,7 @@ Simple two step process:
 : A notable absence in WASI preview 1 is a complete implementation of network sockets.
 : wasip1 only provides functions for operating on already opened sockets, which limits support for key features of the Go standard library like HTTP clients and servers.
 : However, platforms such as Wasmer and WasmEdge have introduced networking extensions.
-: Although these extensions are not integrated into the Go compiler, third party libraries are available to leverage those extensions.
+: Although these extensions are not integrated into the Go compiler, we can use third party libraries to leverage them.
 : This library is also a great example of using the go:wasmimport directive to invoke host functions.
 
 ## When to use Go vs TinyGo when targetting WASI?
@@ -283,9 +285,9 @@ Simple two step process:
 
 .image images/tinygo-logo.png 150 _
 
-: Now we actually have two Go compilers that can target, when should we use one or the other?
-: The primary reason to use TinyGo for is the smaller binary size that it produces. If you're shipping code to a browser for example, this is something that matters a lot.
-: Another reason is that it generally implements features ahead of Big Go. For example, TinyGo had support for WASI before Big Go.
+: So now we actually have two Go compilers that can target WASI, when should we use one or the other?
+: The primary reason to use TinyGo is for the smaller binary size that it produces. If you're shipping code to a browser for example, this is something that matters a lot.
+: Another reason is that it generally implements features ahead of Big Go. For example, TinyGo had support for WASI long before Go did.
 : As a matter of fact, WASI preview 2 is already being implemented in TinyGo.
 : Now TinyGo makes some trade offs, and won't support 100% of the Go standard library or tool chain.
 : So if you need the full language and portability guarantees, this is when you should use the main Go compiler.
@@ -308,6 +310,7 @@ Three main workstreams:
 
 .image images/GOPHERCON.png 150 _
 
+: To wrap it up, let's take a quick look at what's happening today in Go.
 : At this time, two proposals have been accepted by the Go team and are being worked on.
 : The current WebAssembly architecture in Go uses a 64-bits address space, even tho all WebAsssembly hosts assume 32-bits.
 : This hybrid model complicates interactions with the host a lot, so we're working on addressing this in a new wasm32 compilation target.
@@ -315,6 +318,6 @@ Three main workstreams:
 : We're adding a go:wasmexport compiler directive that would allow developers to declare Go functions that are exported in the compiled WebAssembly module.
 : And finally, there is ongoing work to add WASI preview 2 to TinyGo, which is key to prepare for a potential wasip2 target in Go.
 : Go is becoming a big player in the WASI ecosystem, and we're always looking for more friends to help out on this journey.
-: So if you're inspired and want to get involved, join the Gopher Slack, or come talk to us!
+: So if you're inspired and want to get involved, use wasip1, join the Gopher Slack, and come talk to us!
 
 : Thank You!
